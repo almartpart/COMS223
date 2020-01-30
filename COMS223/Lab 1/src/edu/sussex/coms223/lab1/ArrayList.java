@@ -1,46 +1,45 @@
 package edu.sussex.coms223.lab1;
 
-import java.util.Arrays;
-
 public class ArrayList<E> implements List<E> {
 	private Object[] data = new Object[0];
 
 	@Override
 	public boolean add(E e) {
-		if (e == null) {
-			throw new IllegalArgumentException("null value not allowed");
-		}
-		data = Arrays.copyOf(data, data.length + 1);
-
-		data[data.length - 1] = e;
-
+		if (e == null)
+			throw new IllegalArgumentException("null values not allowed");
+		Object[] newData = new Object[data.length + 1];
+		for (int i = 0; i < data.length; i++)
+			newData[i] = data[i];
+		newData[newData.length - 1] = e;
+		data = newData;
 		return true;
 	}
 
 	@Override
 	public boolean remove(E e) {
-		int removed = 0;
-		for (int i =0;i<data.length;i++) {
+		int index = -1;
+		for (int i = 0; i < data.length && index == -1; i++) {
 			if (data[i].equals(e))
-			removed++;	
+				index = i;
 		}
-		if (removed > 0) {
-			Object[]newData = new Object[data.length - removed];
-			for (int i=0,j=0; i<data.length;i++) {
-				if (!data[i].equals(e))
-				 newData[j++]=data[i];
-			}
+		if (index != -1) {
+			Object[] newData = new Object[data.length - 1];
+			for (int i = 0; i < index; i++)
+				newData[i] = data[i];
+			for (int i = index + 1; i < data.length; i++)
+				newData[i - 1] = data[i];
 			data = newData;
 		}
-			
-		
-		return false;
+		return index != -1;
 	}
 
 	@Override
 	public E get(int index) {
 		// TODO Auto-generated method stub
-		
+		if (index<0|| index >= data.length)
+		{
+			throw new IllegalArgumentException("index out of bounds");
+		}
 		return (E) data[index];
 	}
 
@@ -52,9 +51,7 @@ public class ArrayList<E> implements List<E> {
 
 	@Override
 	public void clear() {
-		data = new Object[0];
-		
 		// TODO Auto-generated method stub
-
+		data = new Object[0];
 	}
 }
