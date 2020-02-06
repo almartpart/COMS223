@@ -33,25 +33,21 @@ public class ArrayList<E> implements List<E> {
 		return index != -1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		if (index<0|| index >= data.length)
-		{
-			throw new IllegalArgumentException("index out of bounds");
-		}
+		if (index < 0 || index >= data.length)
+			throw new IllegalArgumentException("index out of range");
 		return (E) data[index];
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return data.length;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		data = new Object[0];
 	}
 }
