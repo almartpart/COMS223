@@ -199,13 +199,23 @@ public class HashMap<K, V> implements Map<K, V> {
 	public int size() {
 		// Declare an integer variable to store the count of entries and initialize to
 		// zero.
-		
+		int count = 0;
 		// ???
 
 		// Search through all the hash table slots.
+	//	List<Entry> entries = (List<HashMap<K, V>.Entry>) hashtable[index];
 		
 		// ???
+		for (int i =0; i< HASHTABLE_SIZE;i++)
+	
 		{
+			if (hashtable[i] != null)
+			{ 
+				List<Entry> entries = (List<HashMap<K, V>.Entry>) hashtable[i];
+			count++;
+			}
+	
+		}
 			// Each hash table slot will either be null or contain a reference to a
 			// List<Entry> instance.
 			
@@ -215,13 +225,13 @@ public class HashMap<K, V> implements Map<K, V> {
 			// the List to the entry count.
 			
 			// ???
-		}
+		
 
 		// Return the count of Map entries.
 		
 		// ???
 		
-		return 0;
+		return count;
 	}
 
 	/**
@@ -229,7 +239,7 @@ public class HashMap<K, V> implements Map<K, V> {
 	 */
 	@Override
 	public void clear() {
-		// ???
+		hashtable = new Object[HASHTABLE_SIZE];
 	}
 
 }
