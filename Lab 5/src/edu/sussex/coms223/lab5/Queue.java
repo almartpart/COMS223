@@ -37,7 +37,7 @@ public class Queue<T> {
 		}*/
 		if (item == null)
 		{
-			throw new IllegalArgumentException();	
+			throw new IllegalArgumentException("cannot enqueue null refernece");	
 		}
 		else
 		{
